@@ -1,0 +1,19 @@
+.linear-bg {
+    background-image: url("images/bg_img.jpg");
+    background-size:cover;
+}
+
+.height-full{
+    height : 100vh;
+}
+
+.cover-div{
+    background-color : rgb(47, 102, 125);
+    height : 94.4vh;
+}
+
+.vertical-align{
+    padding-top:200px;
+}
+
+

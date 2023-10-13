@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body class="linear-bg height-full">
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="">
+                <img src="images/pesulogo.png" width="90" height="28">
+            </a>
+
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="burger-icon-collapse">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+
+        <div id="burger-icon-collapse" class="navbar-menu">
+            <div class="navbar-end">
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        Check In
+                    </a>
+                    <div class="navbar-dropdown">
+                        <a href="" class="navbar-item">
+                            One Time Check In
+                        </a>
+                        <a href="" class="navbar-item">
+                            Re-Check In
+                        </a>
+                    </div>
+                </div>
+                <a href="" class="navbar-item">
+                    Check Out
+                </a>
+                <a href="" class="navbar-item">
+                    Monthly Pass
+                </a>
+                <a href="" class="navbar-item">
+                    Manage
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="columns">
+        <div class="column is-two-fifths cover-div">
+            <div class="columns is-centered">
+                <div class="column is-two-thirds vertical-align">
+                    <div class="box is-half">
+                        <div class="field">
+                            <label for="AdminId" class="label">Faculty_ID</label>
+                            <div class="control has-icons-left">
+                                <input type="text" id="AdminId" class="input" placeholder="Faculty_ID">
+                                <span class="icon is-small is-left">
+                                    <img src="images/user.jpg" alt="">
+                                </span>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="AdminPswd" class="label">Password</label>
+                            <div class="control has-icons-left">
+                                <input type="text" id="AdminPswd" class="input" placeholder="Faculty_Password">
+                                <span class="icon is-small is-left">
+                                    <img src="images/lock.png" alt="">
+                                </span>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <button class="button is-success">Log In</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var burger = document.querySelector('.navbar-burger');
+        var menu = document.querySelector('#' + burger.dataset.target);
+        burger.addEventListener('click', function () {
+        burger.classList.toggle('is-active');
+        menu.classList.toggle('is-active');
+        });
+    </script>
+    <script src="Login.js"></script>
+</body>
+
+</html>
