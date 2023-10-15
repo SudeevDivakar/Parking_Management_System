@@ -3,6 +3,13 @@
     background-size:cover;
 }
 
+.checkin-bg{
+    background-image: url('images/checkin.webp');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .height-full{
     height : 100vh;
 }
