@@ -19,6 +19,13 @@
     background-size: cover;
 }
 
+.monthlypass-bg{
+    background-image: url('images/monthly_pass_bg.avif');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .height-full{
     height : 100vh;
 }
