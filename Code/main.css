@@ -1,10 +1,19 @@
 .linear-bg {
     background-image: url("images/bg_img.jpg");
     background-size:cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .checkin-bg{
     background-image: url('images/checkin.webp');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.checkout-bg{
+    background-image: url('images/checkout_bg.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -22,5 +31,4 @@
 .vertical-align{
     padding-top:200px;
 }
-
 
