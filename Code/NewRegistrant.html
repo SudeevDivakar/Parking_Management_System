@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monthly Pass Registration</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body class="height-full monthlypass-bg">
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="">
+                <img src="images/pesulogo.png" width="90" height="28">
+            </a>
+
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+                data-target="burger-icon-collapse">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+
+        <div id="burger-icon-collapse" class="navbar-menu">
+            <div class="navbar-end">
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link is-arrowless">
+                        Check In
+                    </a>
+                    <div class="navbar-dropdown">
+                        <a href="" class="navbar-item">
+                            One Time Check In
+                        </a>
+                        <a href="" class="navbar-item">
+                            Re-Check In
+                        </a>
+                    </div>
+                </div>
+                <a href="" class="navbar-item">
+                    Check Out
+                </a>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link is-arrowless">
+                        Monthly Pass
+                    </a>
+                    <div class="navbar-dropdown">
+                        <a href="" class="navbar-item">
+                            Registrant Check In
+                        </a>
+                        <a href="" class="navbar-item">
+                            New Registrant Application
+                        </a>
+                    </div>
+                </div>
+                <a href="" class="navbar-item">
+                    Manage
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="columns is-centered">
+        <div style="padding-top: 45px;" class="column is-4">
+            <div class="box">
+                <h1 class="title is-3 has-text-info-dark">Monthly Pass Registration</h1>
+                <div class="field">
+                    <label for="SRN" class="label">SRN</label>
+                    <div class="control has-icons-left">
+                        <input id="SRN" type="text" class="input" placeholder="SRN">
+                        <span class="icon is-small is-left">
+                            <img src="images/user.jpg" alt="">
+                        </span>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="name" class="label">Name</label>
+                    <div class="control has-icons-left">
+                        <input id="name" type="text" class="input" placeholder="Name">
+                        <span class="icon is-small is-left">
+                            <img src="images/name.jpg" alt="">
+                        </span>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="mobno" class="label">Mobile Number</label>
+                    <div class="control has-icons-left">
+                        <input id="mobno" type="text" class="input" placeholder="Mobile Number">
+                        <span class="icon is-small is-left">
+                            <img src="images/phone.webp" alt="">
+                        </span>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="regnobike" class="label">Bike Registration Number</label>
+                    <div class="control has-icons-left">
+                        <input id="regnobike" type="text" class="input" placeholder="Bike Registration Number">
+                        <span class="icon is-small is-left">
+                            <img src="images/regno.png" alt="">
+                        </span>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="regnocar" class="label">Car Registration Number</label>
+                    <div class="control has-icons-left">
+                        <input id="regnocar" type="text" class="input" placeholder="Car Registration Number">
+                        <span class="icon is-small is-left">
+                            <img src="images/regno.png" alt="">
+                        </span>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <label class="checkbox">
+                            <input type="checkbox" name="vehicle_type_two" id="twowheel" value="2">
+                            Two-Wheeler
+                        </label>
+                        <label class="checkbox">
+                            <input type="checkbox" name="vehicle_type_four" id="fourwheel" value="4">
+                            Four-Wheeler
+                        </label>
+                    </div>
+                </div>
+                <button class="button is-primary">Register New User</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var burger = document.querySelector('.navbar-burger');
+        var menu = document.querySelector('#' + burger.dataset.target);
+        burger.addEventListener('click', function () {
+            burger.classList.toggle('is-active');
+            menu.classList.toggle('is-active');
+        });
+    </script>
+</body>
+</html>
