@@ -12,6 +12,7 @@ loginButton.addEventListener('click',function() {
     username = document.querySelector('#AdminId');
     pswd = document.querySelector('#AdminPswd');
     console.log(pswd.value);
+    console.log(username.value);
     if(!(username.value) || !(pswd.value)){
         console.log(username.value);
     }

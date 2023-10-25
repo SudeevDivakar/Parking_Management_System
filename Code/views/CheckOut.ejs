@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrant Check In</title>
+    <title>Check Out</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="main.css">
 </head>
 
-<body class="height-full monthlypass-bg">
+<body class="checkout-bg height-full">
     <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
             <a class="navbar-item" href="">
-                <img src="images/pesulogo.png" width="90" height="28">
+                <img src="/images/pesulogo.png" width="90" height="28">
             </a>
 
             <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
@@ -64,13 +64,13 @@
     <div class="columns is-centered">
         <div class="column is-4 vertical-align">
             <div class="box">
-                <h1 class="title is-2 has-text-info-dark">Registrant Check In</h1>
+                <h1 class="title is-2 has-text-info-dark">Check Out</h1>
                 <div class="field">
                     <label for="SRN" class="label">SRN</label>
                     <div class="control has-icons-left">
                         <input id="SRN" type="text" class="input" placeholder="SRN">
                         <span class="icon is-small is-left">
-                            <img src="images/user.jpg" alt="">
+                            <img src="/images/user.jpg" alt="">
                         </span>
                     </div>
                 </div>
@@ -79,13 +79,12 @@
                     <div class="control has-icons-left">
                         <input id="regno" type="text" class="input" placeholder="Registration Number">
                         <span class="icon is-small is-left">
-                            <img src="images/regno.png" alt="">
+                            <img src="/images/regno.png" alt="">
                         </span>
                     </div>
                 </div>
-                <button class="button is-primary">Check In User</button>
+                <button class="button is-danger">Remove User</button>
             </div>
-
         </div>
     </div>
     <script>

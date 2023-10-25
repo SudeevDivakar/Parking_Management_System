@@ -4,19 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Re-CheckIn</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="main.css">
 </head>
 
-<body class="linear-bg height-full">
+<body class="checkin-bg height-full">
     <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
             <a class="navbar-item" href="">
-                <img src="images/pesulogo.png" width="90" height="28">
+                <img src="/images/pesulogo.png" width="90" height="28">
             </a>
 
-            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="burger-icon-collapse">
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+                data-target="burger-icon-collapse">
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
@@ -61,35 +62,29 @@
         </div>
     </nav>
 
-    <div class="columns">
-        <div class="column is-two-fifths cover-div">
-            <div class="columns is-centered">
-                <div class="column is-two-thirds vertical-align">
-                    <div class="box is-half">
-                        <h1 class="title is-2 has-text-info-dark">Log In</h1>
-                        <div class="field">
-                            <label for="AdminId" class="label">Faculty_ID</label>
-                            <div class="control has-icons-left">
-                                <input type="text" id="AdminId" class="input" placeholder="Faculty_ID">
-                                <span class="icon is-small is-left">
-                                    <img src="images/user.jpg" alt="">
-                                </span>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <label for="AdminPswd" class="label">Password</label>
-                            <div class="control has-icons-left">
-                                <input type="password" id="AdminPswd" class="input" placeholder="Faculty_Password">
-                                <span class="icon is-small is-left">
-                                    <img src="images/lock.png" alt="">
-                                </span>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <button class="button is-success" id="loginbutton">Log In</button>
-                        </div>
+    <div class="columns is-centered">
+        <div class="column is-4 vertical-align">
+            <div class="box">
+                <h1 class="title is-2 has-text-info-dark">Re-Check In</h1>
+                <div class="field">
+                    <label for="SRN" class="label">SRN</label>
+                    <div class="control has-icons-left">
+                        <input id="SRN" type="text" class="input" placeholder="SRN">
+                        <span class="icon is-small is-left">
+                            <img src="/images/user.jpg" alt="">
+                        </span>
                     </div>
                 </div>
+                <div class="field">
+                    <label for="regno" class="label">Registration Number</label>
+                    <div class="control has-icons-left">
+                        <input id="regno" type="text" class="input" placeholder="Registration Number">
+                        <span class="icon is-small is-left">
+                            <img src="/images/regno.png" alt="">
+                        </span>
+                    </div>
+                </div>
+                <button class="button is-primary">Permit User</button>
             </div>
         </div>
     </div>
@@ -97,12 +92,10 @@
         var burger = document.querySelector('.navbar-burger');
         var menu = document.querySelector('#' + burger.dataset.target);
         burger.addEventListener('click', function () {
-        burger.classList.toggle('is-active');
-        menu.classList.toggle('is-active');
+            burger.classList.toggle('is-active');
+            menu.classList.toggle('is-active');
         });
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
-    <script src="JS/Login.js"></script>
 </body>
 
 </html>

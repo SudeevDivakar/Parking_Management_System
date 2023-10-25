@@ -1,6 +1,7 @@
 const express = require('express');
 const mysql = require('mysql');
-const path = require('path')
+const path = require('path');
+
 const app = express();
 
 var connection = mysql.createConnection({
@@ -13,9 +14,8 @@ var connection = mysql.createConnection({
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views'))
 
-app.use(express.static("C:/Users/sudee/OneDrive/Desktop/DBMS_MiniProject/Code"));
-app.use(express.static("C:/Users/sudee/OneDrive/Desktop/DBMS_MiniProject/Code/JS/views"));
-
+app.use(express.static(path.join(__dirname, '/public')));
+app.use(express.static(path.join(__dirname, '/public/css')));
 
 app.get('/', (req, res) => {
     res.render("Login");
