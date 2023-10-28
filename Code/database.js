@@ -12,6 +12,20 @@ const pool = mysql.createPool({
 
 
 export async function getRows(uname,pswd){
-    const result = await pool.query('SELECT * FROM administrator;')
-    return result[0];
+    console.log('hello');
+    const result = await pool.query(`SELECT AdminID, Password FROM administrator where AdminID = "${uname}" and Password = "${pswd}";`)
+    return result;
+}
+
+export async function verifyUser(id, pswd){
+    const result = await pool.query(`SELECT AdminID, Password FROM administrator where AdminID = "${id}" and Password = "${pswd}";`);
+    try{
+        const facultyId = result[0][0].AdminID;
+        const password = result[0][0].Password;
+        return [facultyId,password];
+    }
+    catch{
+        return ['no','no'];
+    }
+    
 }

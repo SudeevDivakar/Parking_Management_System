@@ -2,7 +2,7 @@ import express from 'express';
 import path from 'path';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
-import { getRows } from './database.js'
+import { getRows, verifyUser } from './database.js'
 
 const app = express();
 
@@ -19,10 +19,20 @@ app.get('/', (req, res) => {
     res.render("Login");
 })
 
-app.get('/OneTimeCheckIn', async (req, res) => {
-    const { uname , pswd } = req.query;
-    const rows = await getRows(uname,pswd);
-    res.send(rows);
+app.get('/verifyUser', async (req, res) => {
+    const { id, pswd } = req.query;
+    const credentials = await verifyUser(id, pswd);
+    if( credentials[0] === id && credentials[1] === pswd ){
+        res.send('y');
+    }
+    else{
+        res.send('n');
+    }
+})
+
+app.get('/OneTimeCheckIn', (req, res, next) => {
+    res.render('OneTimeCheckIn.ejs');
+    next();
 });
 
 app.listen(3000, () => {
