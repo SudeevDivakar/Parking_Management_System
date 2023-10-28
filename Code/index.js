@@ -1,15 +1,13 @@
-const express = require('express');
-const mysql = require('mysql');
-const path = require('path');
+import express from 'express';
+import path from 'path';
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+import { getRows } from './database.js'
 
 const app = express();
 
-var connection = mysql.createConnection({
-    host : 'localhost',
-    user : 'root',
-    password : 'very_strong_password',
-    database : 'parking'
-});
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename) 
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views'))
@@ -21,20 +19,11 @@ app.get('/', (req, res) => {
     res.render("Login");
 })
 
-app.get('/OneTimeCheckIn', (req, res) => {
+app.get('/OneTimeCheckIn', async (req, res) => {
     const { uname , pswd } = req.query;
-    connection.connect(function(err) {
-        if(err){
-            throw err;
-        }
-        connection.query("SELECT * FROM administrator", function (err, result, fields) {
-            if(err){
-                throw err;
-            } 
-            console.log(result);
-        });
-    });
-})
+    const rows = await getRows(uname,pswd);
+    res.send(rows);
+});
 
 app.listen(3000, () => {
     console.log('Server running on port 3000')
