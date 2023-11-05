@@ -11,18 +11,27 @@ const loginButton = document.querySelector('#loginbutton');
 let check_problem = 0;
 
 loginButton.addEventListener('click',function() {
-    userId = document.querySelector('#AdminId').value;
-    pswd = document.querySelector('#AdminPswd').value;
+    const userId = document.querySelector('#AdminId').value;
+    const pswd = document.querySelector('#AdminPswd').value;
     if((!(userId) || !(pswd)) && check_problem === 0){
         errorMessage();
+        document.querySelector('#AdminId').value = '';
+        document.querySelector('#AdminPswd').value = '';
     }
     else{
         axios.get(`http://localhost:3000/verifyUser?id=${userId}&pswd=${pswd}`)
         .then((response) => {
             if(response.data === 'y'){
-                axios.get(`http://localhost:3000/OneTimeCheckIn`)
-                .then((res) => {
-                    console.log(res.data);
+                axios.get(`http://localhost:3000/continue`)
+                .then((res) => {              
+                    let newPageCodeArray = res.data.split('\n')
+                    newPageCodeArray.shift();
+                    newPageCodeArray.shift();
+                    newPageCodeArray.pop();
+                    let newPageCode = newPageCodeArray.join('\n')
+                    let html = document.querySelector('html');
+                    html.innerHTML = newPageCode;
+                    console.log(newPageCode)
                 })
             }
             else if(response.data === 'n' && check_problem === 0){
