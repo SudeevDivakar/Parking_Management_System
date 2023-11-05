@@ -46,3 +46,15 @@ export async function insertParkingLot(srn, name, vType, regNumber, adminId){
         return 'n';
     }
 }
+
+export async function reCheckUser(srn, regno){
+    const result = await pool.query(`SELECT * FROM parkingLot where SRN = "${srn}" and Reg_Number = "${regno}";`);
+    try{
+        if(result[0][0].SRN === srn && result[0][0].Reg_Number === regno){
+            return 'y';
+        }
+    }
+    catch{
+        return 'n';
+    }
+}

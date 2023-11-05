@@ -4,7 +4,7 @@ import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import fs from 'fs';
 import dataImported from './details.json' assert {type : 'json'};
-import { insertParkingLot, verifyUser } from './database.js'
+import { reCheckUser, insertParkingLot, verifyUser } from './database.js'
 
 const app = express();
 
@@ -51,12 +51,13 @@ app.get('/verifyUser', async (req, res) => {
 app.get('/insertParkingLot', async(req,res) => {
     const { srn, name, regno, vehType } = req.query;
     const result = await insertParkingLot(srn, name, vehType, regno, dataImported.admin_id);
-        if(result === 'y'){
-            res.send('y');
-        }
-        else if(result === 'n'){
-            res.send('n');
-        }
+    res.send(result);
+})
+
+app.get('/reCheckUser', async(req, res) => {
+    const { srn, regno } = req.query;
+    const result = await reCheckUser(srn, regno);
+    res.send(result);
 })
 
 app.get('/continue', (req, res) => {
