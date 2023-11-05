@@ -12,76 +12,79 @@
 <body class="checkin-bg height-full">
     <%- include('partials/navbar.ejs') %>
 
-    <div class="columns is-centered">
-        <div style="padding-top: 100px;" class="column is-4">
-            <div class="box">
-                <h1 class="title is-2 has-text-info-dark">New Check In</h1>
-                <div class="field">
-                    <label for="SRN" class="label">SRN</label>
-                    <div class="control has-icons-left">
-                        <input id="SRN" type="text" class="input" placeholder="SRN">
-                        <span class="icon is-small is-left">
-                            <img src="/images/user.jpg" alt="">
-                        </span>
-                    </div>
-                </div>
-                <div class="field">
-                    <label for="name" class="label">Name</label>
-                    <div class="control has-icons-left">
-                        <input id="name" type="text" class="input" placeholder="Name">
-                        <span class="icon is-small is-left">
-                            <img src="/images/name.jpg" alt="">
-                        </span>
-                    </div>
-                </div>
-                <div class="field">
-                    <label for="regno" class="label">Registration Number</label>
-                    <div class="control has-icons-left">
-                        <input id="regno" type="text" class="input" placeholder="Registration Number">
-                        <span class="icon is-small is-left">
-                            <img src="/images/regno.png" alt="">
-                        </span>
-                    </div>
-                </div>
-                <div class="field">
-                    <div class="control">
-                        <label class="radio">
-                            <input type="radio" name="vehicle_type" id="twowheel" value="2">
-                            Two-Wheeler
-                        </label>
-                        <label class="radio">
-                            <input type="radio" name="vehicle_type" id="fourwheel" value="4">
-                            Four-Wheeler
-                        </label>
-                    </div>
-                </div>
-                <div class="buttons">
-                    <button class="button is-primary">Check In User</button>
-                    <button onclick="openModal();" class="button is-info">Parking Spots Available</button>
-                    <div class="modal" id="modal1">
-                        <div class="modal-background"></div>
-                        <div class="modal-content">
-                            <div style="width:500px" class="box">
-                                <h1 class="title is-2">Spots Available</h1>
-                                <p><img style="display:inline;" src="/images/bike.png" class="image is-32x32"> : <b><span id="bike_availability"></span></b></p>
-                                <p><img style="display: inline;" src="/images/car.png" class="image is-32x32"> : <b><span id="car_availability"></span></b></p>
-                            </div>
+        <div class="columns is-centered">
+            <div class="column is-4 vertical-align">
+                <div class="box" id="box">
+                    <h1 class="title is-2 has-text-info-dark">New Check In</h1>
+                    <div class="field">
+                        <label for="SRN" class="label">SRN</label>
+                        <div class="control has-icons-left">
+                            <input id="SRN" type="text" class="input" placeholder="SRN">
+                            <span class="icon is-small is-left">
+                                <img src="/images/user.jpg" alt="">
+                            </span>
                         </div>
-                        <button class="modal-close is-large" aria-label="close"></button>
+                    </div>
+                    <div class="field">
+                        <label for="name" class="label">Name</label>
+                        <div class="control has-icons-left">
+                            <input id="name" type="text" class="input" placeholder="Name">
+                            <span class="icon is-small is-left">
+                                <img src="/images/name.jpg" alt="">
+                            </span>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label for="regno" class="label">Registration Number</label>
+                        <div class="control has-icons-left">
+                            <input id="regno" type="text" class="input" placeholder="Registration Number">
+                            <span class="icon is-small is-left">
+                                <img src="/images/regno.png" alt="">
+                            </span>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <label class="radio">
+                                <input type="radio" name="vehicle_type" id="twowheel" value="2">
+                                Two-Wheeler
+                            </label>
+                            <label class="radio">
+                                <input type="radio" name="vehicle_type" id="fourwheel" value="4">
+                                Four-Wheeler
+                            </label>
+                        </div>
+                    </div>
+                    <div class="buttons">
+                        <button id="checkinbutton" class="button is-primary">Check In User</button>
+                        <button onclick="openModal();" class="button is-info">Parking Spots Available</button>
+                        <div class="modal" id="modal1">
+                            <div class="modal-background"></div>
+                            <div style="padding-left: 90px;" class="modal-content">
+                                <div style="width:350px;" class="box">
+                                    <h1 class="title is-2">Spots Available</h1>
+                                    <p><img style="display:inline;" src="/images/bike.png" class="image is-32x32"> :
+                                        <b><span id="bike_availability"></span></b></p>
+                                    <p><img style="display: inline;" src="/images/car.png" class="image is-32x32"> :
+                                        <b><span id="car_availability"></span></b></p>
+                                </div>
+                            </div>
+                            <button class="modal-close is-large" aria-label="close"></button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <script>
-        var burger = document.querySelector('.navbar-burger');
-        var menu = document.querySelector('#' + burger.dataset.target);
-        burger.addEventListener('click', function () {
-            burger.classList.toggle('is-active');
-            menu.classList.toggle('is-active');
-        });
-    </script>
-    <script src="js/OneTimeCheckIn.js"></script>
+        <script>
+            var burger = document.querySelector('.navbar-burger');
+            var menu = document.querySelector('#' + burger.dataset.target);
+            burger.addEventListener('click', function () {
+                burger.classList.toggle('is-active');
+                menu.classList.toggle('is-active');
+            });
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+        <script src="js/OneTimeCheckIn.js"></script>
 </body>
 
 </html>

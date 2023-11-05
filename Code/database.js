@@ -11,7 +11,7 @@ const pool = mysql.createPool({
 }).promise();
 
 
-export async function getRows(uname,pswd){
+async function getRows(uname,pswd){
     console.log('hello');
     const result = await pool.query(`SELECT AdminID, Password FROM administrator where AdminID = "${uname}" and Password = "${pswd}";`)
     return result;
@@ -26,6 +26,23 @@ export async function verifyUser(id, pswd){
     }
     catch{
         return ['no','no'];
+    }    
+}
+
+export async function insertParkingLot(srn, name, vType, regNumber, adminId){
+    const sec = await pool.query(`SELECT Security_ID from security where curtime() between Start_Time and End_Time;`);
+    const securityId = sec[0][0].Security_ID;
+    if(vType === '2'){
+        vType = 'bike';
     }
-    
+    else if(vType === '4'){
+        vType = 'car';
+    }
+    try{
+        const result = await pool.query(`INSERT INTO parkingLot values (?, ?, ?, ?, ?, ?);`,[srn, name, vType, regNumber, adminId, securityId]);
+        return 'y';
+    }
+    catch{
+        return 'n';
+    }
 }

@@ -2,6 +2,8 @@ import express from 'express';
 import path from 'path';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
+import fs from 'fs';
+import dataImported from './details.json' assert {type : 'json'};
 import { insertParkingLot, verifyUser } from './database.js'
 
 const app = express();
@@ -19,12 +21,26 @@ app.get('/', (req, res) => {
     res.render("Login");
 })
 
-let admin_id; 
+
 app.get('/verifyUser', async (req, res) => {
     const { id, pswd } = req.query;
     const credentials = await verifyUser(id, pswd);
     if( credentials[0] === id && credentials[1] === pswd ){
-        admin_id = credentials[0];
+        fs.readFile('./details.json', 'utf8', (err, data) => {
+            if (err) {
+              console.error('Error reading JSON file:', err);
+              return;
+            }
+            const jsonData = JSON.parse(data);
+            jsonData.admin_id = credentials[0];
+            const updatedJsonData = JSON.stringify(jsonData, null, 2);
+            fs.writeFile('./details.json', updatedJsonData, 'utf8', (writeErr) => {
+                if (writeErr) {
+                  console.error('Error writing JSON file:', writeErr);
+                  return;
+                }
+            })
+        });
         res.send('y');
     }
     else{
@@ -32,10 +48,16 @@ app.get('/verifyUser', async (req, res) => {
     }
 })
 
-// app.get('/insertParkingLot', async(req,res) => {
-//     const { srn, name, regno, vehType } = req.query;
-//     const result = 
-// })
+app.get('/insertParkingLot', async(req,res) => {
+    const { srn, name, regno, vehType } = req.query;
+    const result = await insertParkingLot(srn, name, vehType, regno, dataImported.admin_id);
+        if(result === 'y'){
+            res.send('y');
+        }
+        else if(result === 'n'){
+            res.send('n');
+        }
+})
 
 app.get('/continue', (req, res) => {
     res.render('Continue');
