@@ -58,3 +58,13 @@ export async function reCheckUser(srn, regno){
         return 'n';
     }
 }
+
+export async function removeParkingLot(srn, regno){
+    const result = await pool.query(`DELETE FROM parkingLot where SRN = "${srn}" and Reg_Number = "${regno}";`);
+    if(result[0].affectedRows !== 0){
+        return 'y';
+    }
+    else{
+        return 'n';
+    }
+}

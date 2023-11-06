@@ -4,7 +4,7 @@ import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import fs from 'fs';
 import dataImported from './details.json' assert {type : 'json'};
-import { reCheckUser, insertParkingLot, verifyUser } from './database.js'
+import { removeParkingLot, reCheckUser, insertParkingLot, verifyUser } from './database.js'
 
 const app = express();
 
@@ -57,6 +57,12 @@ app.get('/insertParkingLot', async(req,res) => {
 app.get('/reCheckUser', async(req, res) => {
     const { srn, regno } = req.query;
     const result = await reCheckUser(srn, regno);
+    res.send(result);
+})
+
+app.get('/removeParkingLot', async(req, res) => {
+    const { srn, regno } = req.query;
+    const result = await removeParkingLot(srn, regno);
     res.send(result);
 })
 
