@@ -5,7 +5,7 @@ import { fileURLToPath } from 'url';
 import fs from 'fs';
 import dataImported from './details.json' assert {type : 'json'};
 import { insertMonthlyPassBike, insertMonthlyPassCar, 
-    insertMonthlyPassBoth, removeParkingLot, 
+    insertMonthlyPassBoth, removeParkingLot, verifyMonthlyPass, 
     reCheckUser, insertParkingLot, verifyUser } from './database.js'
 
 const app = express();
@@ -81,6 +81,18 @@ app.get('/insertMonthlyPass', async(req, res) => {
     else if(regnobike && !(regnocar)){
         const result = await insertMonthlyPassBike(srn, dataImported.admin_id, regnobike, name, mobno);
         res.send(result);
+    }
+})
+
+app.get('/admitMonthlyPass', async(req, res) => {
+    const { srn, regno } = req.query;
+    const result = await verifyMonthlyPass(srn,regno);
+    if(result === 'n1'){
+        res.send('n1');
+    }
+    else{
+        const insertResult = await insertParkingLot(srn, result.name, result.vehType, regno, dataImported.admin_id);
+        res.send(insertResult);
     }
 })
 

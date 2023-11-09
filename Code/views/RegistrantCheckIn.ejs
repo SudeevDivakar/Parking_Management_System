@@ -13,7 +13,7 @@
 
     <div class="columns is-centered">
         <div class="column is-4 vertical-align">
-            <div class="box">
+            <div id="box" class="box">
                 <h1 class="title is-2 has-text-info-dark">Registrant Check In</h1>
                 <div class="field">
                     <label for="SRN" class="label">SRN</label>
@@ -33,7 +33,7 @@
                         </span>
                     </div>
                 </div>
-                <button class="button is-primary">Check In User</button>
+                <button id="check-in-button" class="button is-primary">Check In User</button>
             </div>
 
         </div>
@@ -46,5 +46,7 @@
             menu.classList.toggle('is-active');
         });
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="js/RegistrantCheckIn.js"></script>
 </body>
 </html>

@@ -131,3 +131,13 @@ export async function insertMonthlyPassCar(srn, adminId, regnocar, name, mobno){
         return 'y';
     }
 }
+
+export async function verifyMonthlyPass(srn, regno){
+    const result = await pool.query(`SELECT * FROM STUDENT WHERE Reg_Number = "${regno}" and SRN = "${srn}";`);
+    if(!(result[0][0])){
+        return 'n1';
+    }
+    else{
+        return { name : result[0][0].name, vehType : result[0][0].Vehicle_type };
+    }
+}
