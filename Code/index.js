@@ -4,7 +4,9 @@ import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import fs from 'fs';
 import dataImported from './details.json' assert {type : 'json'};
-import { removeParkingLot, reCheckUser, insertParkingLot, verifyUser } from './database.js'
+import { insertMonthlyPassBike, insertMonthlyPassCar, 
+    insertMonthlyPassBoth, removeParkingLot, 
+    reCheckUser, insertParkingLot, verifyUser } from './database.js'
 
 const app = express();
 
@@ -64,6 +66,22 @@ app.get('/removeParkingLot', async(req, res) => {
     const { srn, regno } = req.query;
     const result = await removeParkingLot(srn, regno);
     res.send(result);
+})
+
+app.get('/insertMonthlyPass', async(req, res) => {
+    const { srn, name, mobno, regnobike, regnocar } = req.query;
+    if(regnobike && regnocar){
+        const result = await insertMonthlyPassBoth(srn, dataImported.admin_id, regnocar, regnobike, name, mobno);
+        res.send(result);
+    }
+    else if(!(regnobike) && regnocar){
+        const result = await insertMonthlyPassCar(srn, dataImported.admin_id, regnocar, name, mobno);
+        res.send(result);
+    }
+    else if(regnobike && !(regnocar)){
+        const result = await insertMonthlyPassBike(srn, dataImported.admin_id, regnobike, name, mobno);
+        res.send(result);
+    }
 })
 
 app.get('/continue', (req, res) => {

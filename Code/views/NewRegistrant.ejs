@@ -13,7 +13,7 @@
     
     <div class="columns is-centered">
         <div class="column is-4 vertical-align">
-            <div class="box">
+            <div id="box" class="box">
                 <h1 class="title is-3 has-text-info-dark">Monthly Pass Registration</h1>
                 <div class="field">
                     <label for="SRN" class="label">SRN</label>
@@ -72,7 +72,7 @@
                         </label>
                     </div>
                 </div>
-                <button class="button is-primary">Register New User</button>
+                <button id="register-button" class="button is-primary">Register New User</button>
             </div>
         </div>
     </div>
@@ -85,5 +85,7 @@
             menu.classList.toggle('is-active');
         });
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="js/NewRegistrant.js"></script>
 </body>
 </html>
