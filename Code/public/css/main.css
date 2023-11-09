@@ -26,6 +26,17 @@
     background-size: cover;
 }
 
+.manage-bg{
+    background-image: url("images/manage_bg.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.green{
+    background-color: rgb(90, 229, 95);
+}
+
 .height-full{
     height : 100vh;
 }
