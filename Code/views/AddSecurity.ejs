@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Security</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body class="height-full manage-bg">
+    <%- include('partials/navbar.ejs') %>
+        <div class="columns">
+            <div class="column is-2">
+                <aside class="menu white height-full">
+                    <p class="menu-label">
+                        Administrator
+                    </p>
+                    <ul class="menu-list">
+                        <li><a>Add Administrator</a></li>
+                        <li><a>Remove Administrator</a></li>
+                    </ul>
+                    <p class="menu-label">
+                        Security
+                    </p>
+                    <ul class="menu-list">
+                        <li><a class="is-active">Add Security</a></li>
+                        <li><a>Remove Security</a></li>
+                    </ul>
+                </aside>
+            </div>
+            <div class="column">
+                <div class="columns is-centered">
+                    <div class="column is-4 vertical-align">
+                        <div class="box">
+                            <h1 class="title is-3 has-text-info-dark">Add Security</h1>
+                            <div class="field">
+                                <label for="secId" class="label">Security ID</label>
+                                <div class="control has-icons-left">
+                                    <input id="secId" type="text" class="input" placeholder="Security ID">
+                                    <span class="icon is-small is-left">
+                                        <img src="/images/user.jpg" alt="">
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label for="name" class="label">Name</label>
+                                <div class="control has-icons-left">
+                                    <input id="name" type="text" class="input" placeholder="Name">
+                                    <span class="icon is-small is-left">
+                                        <img src="/images/name.jpg" alt="">
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label for="mobno" class="label">Mobile Number</label>
+                                <div class="control has-icons-left">
+                                    <input id="mobno" type="text" class="input" placeholder="Mobile Number">
+                                    <span class="icon is-small is-left">
+                                        <img src="/images/phone.webp" alt="">
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label for="stime" class="label">Start Time</label>
+                                <div class="control has-icons-left">
+                                    <input id="stime" type="text" class="input" placeholder="Start Time">
+                                    <span class="icon is-small is-left">
+                                        <img src="/images/time.png" alt="">
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label for="etime" class="label">End Time</label>
+                                <div class="control has-icons-left">
+                                    <input id="etime" type="text" class="input" placeholder="End Time">
+                                    <span class="icon is-small is-left">
+                                        <img src="/images/time.png" alt="">
+                                    </span>
+                                </div>
+                            </div>
+                            <button class="button is-primary">Add new Security</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</body>
+
+</html>
