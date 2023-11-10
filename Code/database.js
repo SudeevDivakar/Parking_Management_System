@@ -141,3 +141,19 @@ export async function verifyMonthlyPass(srn, regno){
         return { name : result[0][0].name, vehType : result[0][0].Vehicle_type };
     }
 }
+
+export async function insertAdmin(adminId, name, pswd, mobno, mainAdminId, mainAdminPswd){
+    const result1 = await pool.query(`SELECT * FROM administrator WHERE AdminID = "${mainAdminId}" and Password = "${mainAdminPswd}";`);
+    if(!(result1[0][0])){
+        return 'n1';
+    }
+    else{
+        try{
+            const result2 = await pool.query(`INSERT INTO administrator VALUES (?, ?, ?, ?);`, [adminId, name, pswd, mobno]);
+            return 'y';
+        }
+        catch{
+            return 'n2';
+        }
+    }
+}

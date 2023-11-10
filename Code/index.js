@@ -4,7 +4,7 @@ import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import fs from 'fs';
 import dataImported from './details.json' assert {type : 'json'};
-import { insertMonthlyPassBike, insertMonthlyPassCar, 
+import { insertMonthlyPassBike, insertMonthlyPassCar, insertAdmin, 
     insertMonthlyPassBoth, removeParkingLot, verifyMonthlyPass, 
     reCheckUser, insertParkingLot, verifyUser } from './database.js'
 
@@ -94,6 +94,12 @@ app.get('/admitMonthlyPass', async(req, res) => {
         const insertResult = await insertParkingLot(srn, result.name, result.vehType, regno, dataImported.admin_id);
         res.send(insertResult);
     }
+})
+
+app.get('/insertAdmin', async(req, res) => {
+    const { adminId, name, pswd, mobno, adminPswd } = req.query;
+    const result = await insertAdmin(adminId, name, pswd, mobno, dataImported.admin_id, adminPswd);
+    res.send(result);
 })
 
 app.get('/continue', (req, res) => {
