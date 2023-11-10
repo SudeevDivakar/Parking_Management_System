@@ -120,6 +120,18 @@ app.get('/NewRegApplication', (req, res) => {
     res.render('NewRegistrant.ejs');
 })
 
+app.get('/ManageAdmin', (req, res) => {
+    res.render('AddAdmin.ejs');
+})
+
+app.get('/AddSecurity', (req, res) => {
+    res.render('AddSecurity.ejs');
+})
+
+app.get('/RemoveSecurity', (req, res) => {
+    res.render('RemoveSecurity.ejs');
+})
+
 app.listen(3000, () => {
     console.log('Server running on port 3000')
 })
