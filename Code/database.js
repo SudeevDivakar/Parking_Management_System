@@ -172,19 +172,3 @@ export async function insertSecurity(securityId, name, mobno, stime, etime){
         }
     }
 }
-
-export async function removeSecurity(secId, adminId, adminPswd){
-    const result1 = await pool.query(`SELECT * FROM administrator WHERE AdminID = "${adminId}" and Password = "${adminPswd}";`);
-    if(!(result1[0][0])){
-        return 'n1';
-    }
-    else{
-        const result2 = await pool.query(`DELETE FROM security WHERE Security_ID = "${secId}";`);
-        if(result2[0].affectedRows !== 0){
-            return 'y';
-        }
-        else{
-            return 'n2';
-        }
-    }
-}

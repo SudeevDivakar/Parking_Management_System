@@ -5,7 +5,7 @@ import { fileURLToPath } from 'url';
 import fs from 'fs';
 import dataImported from './details.json' assert {type : 'json'};
 import { insertMonthlyPassBike, insertMonthlyPassCar, insertAdmin, 
-    insertMonthlyPassBoth, removeParkingLot, verifyMonthlyPass, insertSecurity, removeSecurity,
+    insertMonthlyPassBoth, removeParkingLot, verifyMonthlyPass, insertSecurity, 
     reCheckUser, insertParkingLot, verifyUser } from './database.js'
 
 const app = express();
@@ -108,12 +108,6 @@ app.get('/insertSecurity', async(req, res) => {
     res.send(result);
 })
 
-app.get('/deleteSecurity', async(req, res) => {
-    const { secId, adminPswd } = req.query;
-    const result = await removeSecurity(secId, dataImported.admin_id, adminPswd);
-    res.send(result);
-})
-
 app.get('/continue', (req, res) => {
     res.render('Continue');
 })
@@ -144,10 +138,6 @@ app.get('/ManageAdmin', (req, res) => {
 
 app.get('/AddSecurity', (req, res) => {
     res.render('AddSecurity.ejs');
-})
-
-app.get('/RemoveSecurity', (req, res) => {
-    res.render('RemoveSecurity.ejs');
 })
 
 app.listen(3000, () => {
