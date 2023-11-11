@@ -23,8 +23,6 @@ export async function verifyUser(id, pswd){
 }
 
 export async function insertParkingLot(srn, name, vType, regNumber, adminId){
-    const sec = await pool.query(`SELECT Security_ID from security where curtime() between Start_Time and End_Time;`);
-    const securityId = sec[0][0].Security_ID;
     if(vType === '2'){
         vType = 'bike';
     }
@@ -32,10 +30,11 @@ export async function insertParkingLot(srn, name, vType, regNumber, adminId){
         vType = 'car';
     }
     try{
-        const result = await pool.query(`INSERT INTO parkingLot values (?, ?, ?, ?, ?, ?);`,[srn, name, vType, regNumber, adminId, securityId]);
+        const result = await pool.query(`INSERT INTO parkingLot values (?, ?, ?, ?, ?, (SELECT Security_ID from security where curtime() between Start_Time and End_Time));`,[srn, name, vType, regNumber, adminId]);
         return 'y';
     }
-    catch{
+    catch(e){
+        console.log(e);
         return 'n';
     }
 }
@@ -65,7 +64,7 @@ export async function removeParkingLot(srn, regno){
 export async function insertMonthlyPassBoth(srn, adminId, regnocar, regnobike, name, mobno){
     let check = 0;
     try{
-        const resultPass = await pool.query(`INSERT INTO monthlypass VALUES (?, "both", CURDATE(), DATE_ADD(CURDATE(), INTERVAL 1 MONTH), ?);`, [srn, adminId]);
+        const resultPass = await pool.query(`INSERT INTO monthlypass (SRN, Vehicle_Type, Start_time, Expiry_date, Granter_Admin_ID) VALUES (?, "both", CURDATE(), DATE_ADD(CURDATE(), INTERVAL 1 MONTH), ?);`, [srn, adminId]);
         check += 1;
     }
     catch{
@@ -93,7 +92,7 @@ export async function insertMonthlyPassBoth(srn, adminId, regnocar, regnobike, n
 export async function insertMonthlyPassBike(srn, adminId, regnobike, name ,mobno){
     let check = 0;
     try{
-        const resultPass = await pool.query(`INSERT INTO monthlypass VALUES (?, "bike", CURDATE(), DATE_ADD(CURDATE(), INTERVAL 1 MONTH), ?);`, [srn, adminId]);
+        const resultPass = await pool.query(`INSERT INTO monthlypass (SRN, Vehicle_Type, Start_time, Expiry_date, Granter_Admin_ID) VALUES (?, "bike", CURDATE(), DATE_ADD(CURDATE(), INTERVAL 1 MONTH), ?);`, [srn, adminId]);
         check += 1;
     }
     catch{
@@ -114,7 +113,7 @@ export async function insertMonthlyPassBike(srn, adminId, regnobike, name ,mobno
 export async function insertMonthlyPassCar(srn, adminId, regnocar, name, mobno){
     let check = 0;
     try{
-        const resultPass = await pool.query(`INSERT INTO monthlypass VALUES (?, "car", CURDATE(), DATE_ADD(CURDATE(), INTERVAL 1 MONTH), ?);`, [srn, adminId]);
+        const resultPass = await pool.query(`INSERT INTO monthlypass (SRN, Vehicle_Type, Start_time, Expiry_date, Granter_Admin_ID) VALUES (?, "car", CURDATE(), DATE_ADD(CURDATE(), INTERVAL 1 MONTH), ?);`, [srn, adminId]);
         check += 1;
     }
     catch{
