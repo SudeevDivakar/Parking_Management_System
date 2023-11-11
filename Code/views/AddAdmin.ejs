@@ -85,6 +85,14 @@
                 </div>
             </div>
         </div>
+        <script>
+            var burger = document.querySelector('.navbar-burger');
+            var menu = document.querySelector('#' + burger.dataset.target);
+            burger.addEventListener('click', function () {
+                burger.classList.toggle('is-active');
+                menu.classList.toggle('is-active');
+            });
+        </script>
         <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
         <script src="js/AddAdmin.js"></script>
 </body>
