@@ -157,3 +157,18 @@ export async function insertAdmin(adminId, name, pswd, mobno, mainAdminId, mainA
         }
     }
 }
+
+export async function insertSecurity(securityId, name, mobno, stime, etime){
+    try{
+        const result = await pool.query(`INSERT INTO security VALUES (?, ?, ?, ?, ?);`, [securityId, name, mobno, stime, etime]);
+        return 'y';
+    }
+    catch(err){
+        if(err.code === 'ER_DUP_ENTRY'){
+            return 'n1';
+        }
+        else if(err.code === 'ER_TRUNCATED_WRONG_VALUE'){
+            return 'n2'
+        }
+    }
+}

@@ -32,7 +32,7 @@
             <div class="column">
                 <div class="columns is-centered">
                     <div class="column is-4 vertical-align">
-                        <div class="box">
+                        <div id="box" class="box">
                             <h1 class="title is-3 has-text-info-dark">Add Security</h1>
                             <div class="field">
                                 <label for="secId" class="label">Security ID</label>
@@ -79,13 +79,14 @@
                                     </span>
                                 </div>
                             </div>
-                            <button class="button is-primary">Add new Security</button>
+                            <button id="add-button" class="button is-primary">Add new Security</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
+        <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+        <script src="js/AddSecurity.js"></script>
 </body>
 
 </html>

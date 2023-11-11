@@ -5,7 +5,7 @@ import { fileURLToPath } from 'url';
 import fs from 'fs';
 import dataImported from './details.json' assert {type : 'json'};
 import { insertMonthlyPassBike, insertMonthlyPassCar, insertAdmin, 
-    insertMonthlyPassBoth, removeParkingLot, verifyMonthlyPass, 
+    insertMonthlyPassBoth, removeParkingLot, verifyMonthlyPass, insertSecurity, 
     reCheckUser, insertParkingLot, verifyUser } from './database.js'
 
 const app = express();
@@ -99,6 +99,12 @@ app.get('/admitMonthlyPass', async(req, res) => {
 app.get('/insertAdmin', async(req, res) => {
     const { adminId, name, pswd, mobno, adminPswd } = req.query;
     const result = await insertAdmin(adminId, name, pswd, mobno, dataImported.admin_id, adminPswd);
+    res.send(result);
+})
+
+app.get('/insertSecurity', async(req, res) => {
+    const { securityId, name, mobno, stime, etime } = req.query;
+    const result = await insertSecurity(securityId, name, mobno, stime, etime);
     res.send(result);
 })
 
