@@ -1,28 +1,32 @@
-const button = document.querySelector('#add-button');
+const button = document.querySelector('#update-button');
 let check_problem = 0;
 button.addEventListener('click', () => {
-    const adminId = document.querySelector('#adminId');
-    const name = document.querySelector('#name');
-    const pswd = document.querySelector('#pswd');
-    const mobno = document.querySelector('#mobno');
-    const adminPswd = document.querySelector('#adminPswd');
-    if(!(adminId.value) || !(name.value) || !(pswd.value) || !(mobno.value) || !(adminPswd.value)){
+    const srn = document.querySelector('#srn').value;
+    const adminPswd = document.querySelector('#adminPswd').value;
+    const regno = document.querySelector('#regno').value;
+    if(!(srn) || !(adminPswd) || !(regno)){
         errorMessage('Please Fill in All Fields');
     }
-    else if(mobno.value.length !== 10){
-        errorMessage('Make Sure Mobile Number is of Correct Length');
+    else if(srn.length !== 13 || regno.length !== 4){
+        errorMessage('Make Sure SRN and Registration Number are of Proper Length');
     }
     else{
-        axios.get(`http://localhost:3000/insertAdmin?adminId=${adminId.value}&name=${name.value}&pswd=${pswd.value}&mobno=${mobno.value}&adminPswd=${adminPswd.value}`)
+        axios.get(`http://localhost:3000/updatePass?srn=${srn}&adminPswd=${adminPswd}&regno=${regno}`)
         .then((response) => {
             if(response.data === 'y'){
                 successMessage();
             }
             else if(response.data === 'n1'){
-                errorMessage(`Granter Admin's Password is Incorrect`);
+                errorMessage('Enter Correct Administrator Password');
             }
             else if(response.data === 'n2'){
-                errorMessage('Admin Already in Database');
+                errorMessage('User Does not have a MonthlyPass');
+            }
+            else if(response.data === 'n3'){
+                errorMessage('User Already has a Pass for Car and Bike');
+            }
+            else if(response.data === 'n4'){
+                errorMessage('Registration Number Already has a Monthly Pass');
             }
         })
     }
@@ -67,7 +71,7 @@ function successMessage() {
         h4.classList.add("title");
         h4.classList.add("is-6");
         h4.classList.add("has-text-primary");
-        h4.innerText = 'Admin Added into Database';
+        h4.innerText = 'Monthly Pass Updated!';
         const box = document.querySelector('#box');
         box.append(h4);
         check_problem = 2;
@@ -80,7 +84,7 @@ function successMessage() {
         h4.classList.add("title");
         h4.classList.add("is-6");
         h4.classList.add("has-text-primary");
-        h4.innerText = 'Admin Added into Database';
+        h4.innerText = 'Monthly Pass Updated!';
         box.append(h4);
         check_problem = 2;
     }
@@ -88,9 +92,7 @@ function successMessage() {
 }
 
 function reset(){
-    document.querySelector('#adminId').value = '';
-    document.querySelector('#name').value = '';
-    document.querySelector('#pswd').value = '';
-    document.querySelector('#mobno').value = '';
+    document.querySelector('#srn').value = '';
     document.querySelector('#adminPswd').value = '';
+    document.querySelector('#regno').value = '';
 }

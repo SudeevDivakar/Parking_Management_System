@@ -33,8 +33,7 @@ export async function insertParkingLot(srn, name, vType, regNumber, adminId){
         const result = await pool.query(`INSERT INTO parkingLot values (?, ?, ?, ?, ?, (SELECT Security_ID from security where curtime() between Start_Time and End_Time));`,[srn, name, vType, regNumber, adminId]);
         return 'y';
     }
-    catch(e){
-        console.log(e);
+    catch{
         return 'n';
     }
 }
@@ -168,6 +167,49 @@ export async function insertSecurity(securityId, name, mobno, stime, etime){
         }
         else if(err.code === 'ER_TRUNCATED_WRONG_VALUE'){
             return 'n2'
+        }
+    }
+}
+
+
+export async function updatePass(adminId, adminPswd, srn, regno){
+    const result1 = await pool.query(`SELECT * FROM administrator WHERE AdminID = "${adminId}" and Password = "${adminPswd}";`);
+    if(!(result1[0][0])){
+        return 'n1';
+    }
+    else{
+        let vehType;
+        try{
+            vehType = await pool.query(`SELECT Vehicle_Type FROM monthlypass WHERE SRN = "${srn}";`);
+            vehType = vehType[0][0].Vehicle_Type;
+        }
+        catch{
+            return 'n2';
+        }
+        const result2 = await pool.query(`UPDATE monthlypass SET Vehicle_Type = "both" WHERE SRN = "${srn}";`);
+        if(result2[0].changedRows !== 1){
+            const dummy = await pool.query(`UPDATE monthlypass SET Vehicle_Type = "${vehType}" WHERE SRN = "${srn}";`);
+            return 'n3';
+        }
+        else{
+            try{
+                const result3 = await pool.query(`INSERT INTO student (Reg_Number, name, SRN, Mobile_number, Vehicle_type)
+                SELECT
+                    ?,
+                    (SELECT name FROM student WHERE SRN = "${srn}"),
+                    ?,
+                    (SELECT Mobile_number FROM student WHERE SRN = "${srn}"),
+                    CASE
+                        WHEN (SELECT Vehicle_Type FROM student WHERE SRN = "${srn}") = 'car' THEN 'bike'
+                        WHEN (SELECT Vehicle_Type FROM student WHERE SRN = "${srn}") = 'bike' THEN 'car'
+                    END;`, [regno, srn]);
+                return 'y';
+            }
+            catch(e){
+                const dummy = await pool.query(`UPDATE monthlypass SET Vehicle_Type = "${vehType}" WHERE SRN = "${srn}";`);
+                return 'n4';
+            }
+            
         }
     }
 }

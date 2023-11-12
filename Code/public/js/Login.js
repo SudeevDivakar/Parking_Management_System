@@ -31,7 +31,6 @@ loginButton.addEventListener('click',function() {
                     let newPageCode = newPageCodeArray.join('\n')
                     let html = document.querySelector('html');
                     html.innerHTML = newPageCode;
-                    console.log(newPageCode)
                 })
             }
             else if(response.data === 'n' && check_problem === 0){

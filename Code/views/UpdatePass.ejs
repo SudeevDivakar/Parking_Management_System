@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Security</title>
+    <title>Manage Monthly Pass</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="main.css">
 </head>
@@ -24,13 +24,13 @@
                         Security
                     </p>
                     <ul class="menu-list">
-                        <li><a href="/AddSecurity" class="is-active">Add Security</a></li>
+                        <li><a href="/AddSecurity">Add Security</a></li>
                     </ul>
                     <p class="menu-label">
                         MonthlyPass
                     </p>
                     <ul class="menu-list">
-                        <li><a href="/UpdateMonthlyPass">Update MonthlyPass</a></li>
+                        <li><a href="" class="is-active">Update MonthlyPass</a></li>
                     </ul>
                 </aside>
             </div>
@@ -38,53 +38,35 @@
                 <div class="columns is-centered">
                     <div class="column is-4 vertical-align">
                         <div id="box" class="box">
-                            <h1 class="title is-3 has-text-info-dark">Add Security</h1>
+                            <h1 class="title is-3 has-text-info-dark">Update Monthly Pass</h1>
                             <div class="field">
-                                <label for="secId" class="label">Security ID</label>
+                                <label for="srn" class="label">SRN</label>
                                 <div class="control has-icons-left">
-                                    <input id="secId" type="text" class="input" placeholder="Security ID">
+                                    <input id="srn" type="text" class="input" placeholder="SRN">
                                     <span class="icon is-small is-left">
                                         <img src="/images/user.jpg" alt="">
                                     </span>
                                 </div>
                             </div>
                             <div class="field">
-                                <label for="name" class="label">Name</label>
+                                <label for="regno" class="label">New Registration Number</label>
                                 <div class="control has-icons-left">
-                                    <input id="name" type="text" class="input" placeholder="Name">
+                                    <input id="regno" type="text" class="input" placeholder="New Registration Number">
                                     <span class="icon is-small is-left">
-                                        <img src="/images/name.jpg" alt="">
+                                        <img src="/images/regno.png" alt="">
                                     </span>
                                 </div>
                             </div>
                             <div class="field">
-                                <label for="mobno" class="label">Mobile Number</label>
+                                <label for="adminPswd" class="label">Administrator Password</label>
                                 <div class="control has-icons-left">
-                                    <input id="mobno" type="text" class="input" placeholder="Mobile Number">
+                                    <input id="adminPswd" type="password" class="input" placeholder="Administrator Password">
                                     <span class="icon is-small is-left">
-                                        <img src="/images/phone.webp" alt="">
+                                        <img src="/images/lock.png" alt="">
                                     </span>
                                 </div>
                             </div>
-                            <div class="field">
-                                <label for="stime" class="label">Start Time</label>
-                                <div class="control has-icons-left">
-                                    <input id="stime" type="text" class="input" placeholder="Start Time">
-                                    <span class="icon is-small is-left">
-                                        <img src="/images/time.png" alt="">
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <label for="etime" class="label">End Time</label>
-                                <div class="control has-icons-left">
-                                    <input id="etime" type="text" class="input" placeholder="End Time">
-                                    <span class="icon is-small is-left">
-                                        <img src="/images/time.png" alt="">
-                                    </span>
-                                </div>
-                            </div>
-                            <button id="add-button" class="button is-primary">Add new Security</button>
+                            <button id="update-button" class="button is-primary">Update Pass</button>
                         </div>
                     </div>
                 </div>
@@ -99,7 +81,7 @@
             });
         </script>
         <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
-        <script src="js/AddSecurity.js"></script>
+        <script src="js/UpdatePass.js"></script>
 </body>
 
 </html>
