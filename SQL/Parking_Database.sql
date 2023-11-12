@@ -93,7 +93,7 @@ DELETE FROM monthlypass WHERE Expiry_Date < CURDATE();
 
 
 
-/* Trigger to set the Amount_paid column of the monthlypass table to its respective value */
+/* Trigger to set the Amount_paid column of the monthlypass table to its respective value after an insert statement */
 DELIMITER //
 
 CREATE TRIGGER set_amount_paid
@@ -115,6 +115,26 @@ END //
 DELIMITER ;
 
 
+/* Trigger to set the Amount_paid column of the monthlypass table to its respective value after an update statement */
+DELIMITER //
+
+CREATE TRIGGER set_amount_paid_update
+BEFORE UPDATE ON monthlypass
+FOR EACH ROW
+BEGIN
+    DECLARE vehicle_type_value INT;
+
+    CASE NEW.Vehicle_Type
+        WHEN "bike" THEN SET vehicle_type_value = 150;
+        WHEN "car" THEN SET vehicle_type_value = 250;
+        WHEN "both" THEN SET vehicle_type_value = 400;
+        ELSE SET vehicle_type_value = 0;  -- Handle other cases if needed
+    END CASE;
+
+    SET NEW.Amount_paid = vehicle_type_value;
+END //
+
+DELIMITER ;
 
 
 
