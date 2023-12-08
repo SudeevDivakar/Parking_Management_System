@@ -1,3 +1,6 @@
+> Note : May need to adjust styles(css + bulma) based on screen size
+
+
 # Parking Management System
 
 ## Overview
@@ -19,7 +22,13 @@ established a connection to a MySQL database. Furthermore, this project is heavi
 ## Running the project
 1. This project contains a sql file which will have to be run first for the creation of the database, along with events and necessary records that need to be present within the database.
 1. Please note, the credentails of the security guards and the admin in the sql file can be changed as per the need.
-1. Next we will need to shift our current working directory to './Code' where we run the command "**npm install**" which downloads all the necessary node modules required for the project to run.
-1. We will then need to create a .env file and store information (host, user, password, database) within it to help us create a connection with our database.
-1. We then run the command "**node index.js**" to create our own server on port 3000. (can be changed)
+1. Next we will need to shift our current working directory to './Code' where we run the command ```npm install``` which downloads all the necessary node modules required for the project to run.
+1. We will then need to create a .env file (in the same directory) and store information within it to help us create a connection with our database. The format for the .env file is as follows
+   ```
+   MYSQL_HOST = ''
+   MYSQL_USER = ''
+   MYSQL_PASSWORD = ''
+   MYSQL_DATABASE = ''
+   ```
+1. We then run the command ```node index.js``` to create our own server on port 3000. (can be changed)
 1. Then enter the Faculty ID and Password as given in the sql file.
