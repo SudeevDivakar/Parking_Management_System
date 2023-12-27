@@ -1,4 +1,4 @@
-> Note : May need to adjust styles(css + bulma) based on screen size
+> Note : May need to adjust styles(css + bulma) based on screen size OR keep window zoom at 100%
 
 
 # Parking Management System
